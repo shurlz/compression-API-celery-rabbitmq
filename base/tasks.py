@@ -34,9 +34,8 @@ def send_confirmations():
             send_email(
                 to = instance.email, 
                 subject = 'Your Image Has Been Compressed Successfully',
-                message = f'Click this link to download your image: '
+                message = f'Click this link to download your image: {instance.get_download_link()}'
                        )
-                       
             """
             
             # update task status in the database

@@ -1,3 +1,7 @@
+import os
+from dotenv import load_dotenv
+load_dotenv()
+from typing import Union
 from django.db import models
 
 
@@ -17,3 +21,8 @@ class UploadModel(models.Model):
 
     def __str__(self) -> str: 
         return self.email
+    
+    def get_download_link(self) -> Union[str, None]:
+        if not self.compressed_image_path:
+            return None
+        return os.getenv('API_URL') + f'{self.id}'
