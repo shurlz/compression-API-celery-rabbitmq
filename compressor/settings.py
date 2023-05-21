@@ -112,7 +112,7 @@ MEDIA_ROOT = BASE_DIR/ 'media/'
 MEDIA_URL = '/media/'
 
 # celery stuffs
-CELERY_BROKER_URL = 'amqp://guest@localhost:5672' # 'amqp://guest:guest@rabbitmq:5672' 
+CELERY_BROKER_URL = 'amqp://guest@rabbitmq:5672' # 'amqp://guest:guest@rabbitmq:5672' 
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'

@@ -16,6 +16,26 @@ services:
       timeout: 30s
       retries: 5
 
+  run_celery_master:
+    build: .
+    container_name: celery_master
+    networks:
+      - compressor
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    command: celery -A compressor worker -l INFO
+        
+  run_celery_worker:
+    build: .
+    container_name: celery_worker
+    networks:
+      - compressor
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    command: celery -A compressor worker -B
+
   server:
     container_name: compressor-backend
     restart: on-failure
@@ -28,6 +48,7 @@ services:
     depends_on:
       rabbitmq:
         condition: service_healthy
+    command: python3 manage.py runserver
 
 networks:
   compressor:

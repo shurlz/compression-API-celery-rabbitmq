@@ -15,7 +15,3 @@ COPY . .
 RUN python3 manage.py makemigrations
 
 RUN python3 manage.py migrate
-
-# run celery and server
-
-CMD [ "./bashstuffs/runserver.sh" ]
