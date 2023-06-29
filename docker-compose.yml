@@ -40,15 +40,15 @@ services:
     container_name: compressor-backend
     restart: on-failure
     build: .
-    expose:
-      - "8000"
+    ports:
+      - "8000:8000"
     env_file: .env
     networks:
       - compressor
     depends_on:
       rabbitmq:
         condition: service_healthy
-    command: python3 manage.py runserver
+    command: python3 manage.py runserver 0.0.0.0:8000
 
 networks:
   compressor:
